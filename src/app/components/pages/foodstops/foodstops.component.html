@@ -1,0 +1,24 @@
+<mat-card class="card" *ngFor="let fs of availableFoodstops">
+  <mat-card-header>
+    <mat-card-title>{{ fs.name }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="card-content-item">
+      <mat-icon>business</mat-icon>
+      <span class="icon-fix">{{ fs.address }}</span>
+    </div>
+    <div class="card-content-item">
+      <mat-icon>local_dining</mat-icon>
+      <span class="icon-fix"><a [href]="fs.menu">Menu</a></span>
+    </div>
+    <div class="card-content-item">
+      <mat-icon>call</mat-icon>
+      <span class="icon-fix">{{ fs.phone }}</span>
+    </div>
+    <div class="card-content-item">
+      <mat-icon>shopping_bag</mat-icon>
+      <span class="icon-fix">{{ fs.f_delivery ? "Yes" : "No" }}</span>
+    </div>
+  </mat-card-content>
+  <mat-card-actions></mat-card-actions>
+</mat-card>

@@ -21,6 +21,8 @@ import { PostsComponent } from './components/pages/posts/posts.component';
 import { PostComponent } from './components/pages/post/post.component';
 import { CommentComponent } from './components/pages/comment/comment.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { PostDialogComponent } from './components/pages/post-dialog/post-dialog.component';
+import { FoodstopsComponent } from './components/pages/foodstops/foodstops.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
     PostComponent,
     CommentComponent,
     WelcomeComponent,
+    PostDialogComponent,
+    FoodstopsComponent,
   ],
   imports: [
     BrowserModule,

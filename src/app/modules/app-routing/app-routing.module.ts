@@ -7,9 +7,11 @@ import { AuthRoutingModule } from '../auth-routing/auth-routing.module';
 // [Components]
 import { WelcomeComponent } from '../../components/welcome/welcome.component';
 import { PostsComponent } from '../../components/pages/posts/posts.component';
+import { FoodstopsComponent } from 'src/app/components/pages/foodstops/foodstops.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
+  { path: 'foodstops', component: FoodstopsComponent },
   { path: 'posts', component: PostsComponent },
   {
     path: 'posts/:id',

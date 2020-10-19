@@ -4,13 +4,13 @@
   </button>
   <span>Food?</span>
   <span class="spacer"></span>
-  <button routerLink="/signup" mat-icon-button color="accent">
+  <button routerLink="/signup" mat-icon-button color="accent" *ngIf="!isAuth">
     <mat-icon>person_add</mat-icon>
   </button>
-  <button routerLink="/login" mat-icon-button color="primary">
+  <button routerLink="/login" mat-icon-button color="primary" *ngIf="!isAuth">
     <mat-icon>login</mat-icon>
   </button>
-  <button mat-icon-button color="warn" (click)="onLogout()">
+  <button mat-icon-button color="warn" (click)="onLogout()" *ngIf="isAuth">
     <mat-icon>outbond</mat-icon>
   </button>
 </mat-toolbar>
