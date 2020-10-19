@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "food-b5ab8": {
+      "hosting": {
+        "food": [
+          "food-b5ab8"
+        ]
+      }
+    }
+  }
+}
