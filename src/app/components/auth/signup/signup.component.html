@@ -1,1 +1,48 @@
-<p>signup works!</p>
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>Register</mat-card-title>
+    <mat-card-subtitle>Please enter your information below</mat-card-subtitle>
+  </mat-card-header>
+  <form [formGroup]="signupForm">
+    <mat-card-content>
+      <mat-form-field class="input-field">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+      </mat-form-field>
+      <mat-form-field class="input-field">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+      <mat-form-field class="input-field" appearance="fill">
+        <mat-label>Your Company</mat-label>
+        <mat-select formControlName="company">
+          <mat-option
+            *ngFor="let company of companies | async"
+            [value]="company.name"
+          >
+            {{ company.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="onRegisterSubmit()"
+        [disabled]="signupForm.invalid"
+      >
+        Register
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        type="button"
+        (click)="signupForm.reset()"
+      >
+        Cancel
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>
