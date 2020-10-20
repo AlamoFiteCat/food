@@ -1,2 +1,30 @@
-<h1>post header</h1>
-<app-comment></app-comment>
+<div class="content">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>{{ currentOrder?.foodstop }}</mat-card-title>
+      <mat-card-subtitle>{{ currentOrder?.authorUsername }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="text-muted">
+      Order Time: {{ currentOrder?.orderTime }}
+      <br />
+      ETA: {{ currentOrder?.ETA }}
+      <br />
+      Status: {{ currentOrder?.status }}
+    </mat-card-content>
+  </mat-card>
+  <app-comment
+    *ngFor="let comment of commentList"
+    [currentComment]="comment"
+  ></app-comment>
+</div>
+<mat-toolbar class="divider">
+  <button
+    class="new-post"
+    mat-icon-button
+    class="example-icon"
+    color="primary"
+    (click)="openCommentDialog()"
+  >
+    <mat-icon>create</mat-icon>
+  </button>
+</mat-toolbar>

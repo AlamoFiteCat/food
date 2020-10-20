@@ -67,7 +67,7 @@ export class AuthService {
           username: user.username,
         });
         this.router.navigate(['/posts']);
-        sessionStorage.setItem('userCompany', user.company);
+        localStorage.setItem('userCompany', user.company);
       })
       .catch((err) => {
         this.toastr.error(err.message, 'Error!');

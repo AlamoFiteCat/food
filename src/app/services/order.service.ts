@@ -4,7 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 
 // [rxjs Imports]
-import { map } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 // [Custom Imports]
@@ -16,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class OrderService {
   ordersChanged = new Subject<Order[]>();
+  orderSubject = new Subject<Order>();
 
   constructor(
     private firestore: AngularFirestore,
@@ -47,7 +48,27 @@ export class OrderService {
       });
   }
 
-  getOrderById() {}
+  getOrderById(id: string) {
+    this.firestore
+      .doc(`orders/${id}`)
+      .get()
+      .pipe(
+        map((doc) => {
+          return {
+            id: doc.id,
+            authorEmail: doc.data()['authorEmail'],
+            authorUsername: doc.data()['authorUsername'],
+            foodstop: doc.data()['foodstop'],
+            orderTime: doc.data()['orderTime'],
+            ETA: doc.data()['ETA'],
+            status: doc.data()['status'],
+          };
+        })
+      )
+      .subscribe((result: Order) => {
+        this.orderSubject.next(result);
+      });
+  }
 
   postOrder(order: Order) {
     this.firestore

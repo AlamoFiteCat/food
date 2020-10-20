@@ -1,0 +1,10 @@
+.content {
+  height: 86vh;
+  overflow: scroll;
+}
+.divider {
+  border-top: 1px solid #c2185b;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

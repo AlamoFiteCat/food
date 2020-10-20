@@ -1,1 +1,14 @@
-<p>comment works!</p>
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>{{ currentComment?.author }}</mat-card-title>
+    <mat-card-subtitle>{{
+      currentComment.timestamp.seconds * 1000 | date: "medium"
+    }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <p>
+      {{ currentComment.text }}
+    </p>
+  </mat-card-content>
+</mat-card>

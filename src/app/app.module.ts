@@ -23,6 +23,7 @@ import { CommentComponent } from './components/pages/comment/comment.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { PostDialogComponent } from './components/pages/post-dialog/post-dialog.component';
 import { FoodstopsComponent } from './components/pages/foodstops/foodstops.component';
+import { CommentDialogComponent } from './components/pages/comment-dialog/comment-dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { FoodstopsComponent } from './components/pages/foodstops/foodstops.compo
     WelcomeComponent,
     PostDialogComponent,
     FoodstopsComponent,
+    CommentDialogComponent,
   ],
   imports: [
     BrowserModule,
