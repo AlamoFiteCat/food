@@ -1,0 +1,42 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>New Order</mat-card-title>
+    <mat-card-subtitle>Please fill in the information below</mat-card-subtitle>
+  </mat-card-header>
+  <form [formGroup]="dialogForm">
+    <mat-card-content>
+      <mat-form-field class="full-width">
+        <mat-label>Foodstop</mat-label>
+        <input formControlName="foodstop" matInput type="text" />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Order Time</mat-label>
+        <input
+          formControlName="orderTime"
+          matInput
+          type="text"
+          placeholder="Timestamp such as 11:00, 13:30..."
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>ETA</mat-label>
+        <input
+          formControlName="ETA"
+          matInput
+          type="text"
+          placeholder="1h, 30m..."
+        />
+        <mat-hint color="accent">You'll be able to edit this later.</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="full-width" style="margin-top: 16px">
+        <mat-label>Status</mat-label>
+        <input formControlName="status" matInput type="text" />
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="onPlaceOrder()">
+        Place Order
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>

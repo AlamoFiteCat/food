@@ -15,6 +15,7 @@ export class SignupComponent implements OnInit {
   companySubscription: Subscription;
   signupForm = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
+    username: new FormControl(null, Validators.required),
     password: new FormControl(null, [
       Validators.required,
       Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/),

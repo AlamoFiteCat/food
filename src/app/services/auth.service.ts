@@ -5,12 +5,14 @@ import { User } from '../interfaces/user';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { first } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   authChange = new Subject<boolean>();
+  currentUserSubject = new Subject<{}>();
   private isAuthenticated = false;
 
   constructor(
@@ -34,6 +36,26 @@ export class AuthService {
     });
   }
 
+  getCurrentUser() {
+    this.auth.authState.subscribe((user) => {
+      if (user) {
+        this.firestore
+          .collection('users', (ref) => ref.where('email', '==', user.email))
+          .get()
+          .pipe(first())
+          .subscribe((res) => {
+            res.docs.forEach((user) => {
+              const { username, email } = user.data();
+              this.currentUserSubject.next({
+                username: username,
+                email: email,
+              });
+            });
+          });
+      }
+    });
+  }
+
   register(user: User) {
     this.auth
       .createUserWithEmailAndPassword(user.email, user.password)
@@ -42,6 +64,7 @@ export class AuthService {
         this.firestore.collection('users').add({
           email: user.email,
           company: user.company,
+          username: user.username,
         });
         this.router.navigate(['/posts']);
         sessionStorage.setItem('userCompany', user.company);

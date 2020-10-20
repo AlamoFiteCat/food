@@ -1,5 +1,7 @@
 export interface Order {
-  author: string;
+  id?: string;
+  authorEmail: string;
+  authorUsername: string;
   foodstop: string;
   orderTime: string;
   ETA: string;
