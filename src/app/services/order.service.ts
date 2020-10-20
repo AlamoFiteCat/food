@@ -1,20 +1,51 @@
+// [Angular Imports]
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
+
+// [rxjs Imports]
+import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
+// [Custom Imports]
 import { Order } from '../interfaces/order';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
+  ordersChanged = new Subject<Order[]>();
+
   constructor(
     private firestore: AngularFirestore,
     public toastr: ToastrService,
     private router: Router
   ) {}
 
-  getAllOrders() {}
+  getAllOrders() {
+    this.firestore
+      .collection('orders')
+      .snapshotChanges()
+      .pipe(
+        map((docArray) => {
+          return docArray.map((doc) => {
+            return {
+              id: doc.payload.doc.id,
+              authorEmail: doc.payload.doc.data()['authorEmail'],
+              authorUsername: doc.payload.doc.data()['authorUsername'],
+              foodstop: doc.payload.doc.data()['foodstop'],
+              orderTime: doc.payload.doc.data()['orderTime'],
+              ETA: doc.payload.doc.data()['ETA'],
+              status: doc.payload.doc.data()['status'],
+            };
+          });
+        })
+      )
+      .subscribe((orders: Order[]) => {
+        this.ordersChanged.next(orders);
+      });
+  }
 
   getOrderById() {}
 

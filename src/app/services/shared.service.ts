@@ -1,7 +1,12 @@
+// [Angular Imports]
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+
+// [rxjs Imports]
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+// [Custom Imports]
 import { Foodstop } from '../interfaces/foodstop';
 
 @Injectable({
